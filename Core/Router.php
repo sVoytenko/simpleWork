@@ -19,7 +19,8 @@ class Router
         
         $this->routes[] = ['route' => $route, 'controller' => $controller, 'action' => $action, 'namespace' => $namespace];
     }
-
+    
+    //местод сопоставляет входящий uri с роутами, хранящямися в массиве $routes
     protected function matchUri($uri)
     {
         foreach ($this->routes as $route) {
@@ -38,7 +39,8 @@ class Router
         }
         return false;
     }
-
+    
+    //запус приложения - поиск необходимого контроллера, его создание и вызо экшена
     public function run()
     {
         $uri = $this->removeQueryStringVariables($_SERVER['QUERY_STRING']);
@@ -62,6 +64,7 @@ class Router
         return TRUE;
     }
     
+    //метод очищает ури от переменных get строки
     protected function removeQueryStringVariables(string $url)
     {
         if($url != ''){
